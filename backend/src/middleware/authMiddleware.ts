@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
+import { BadRequestError } from "../errors/badRequestError";
 
 declare module "express" {
   interface Request {
@@ -11,7 +12,7 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    throw new Error("Authentification invalide");
+    throw new BadRequestError("Authentification invalide");
   }
 
   const token = authHeader.split(" ")[1];
@@ -25,6 +26,6 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
 
     next();
   } catch (error) {
-    throw new Error("Authentification invalide");
+    throw new BadRequestError("Authentification invalide");
   }
 };
