@@ -8,7 +8,7 @@ const options: swaggerJSDoc.Options = {
     info: {
       title: "TheBarApp API",
       version: "1.0.0",
-      description: "Author : dryxos118",
+      description: "Powered by Dryxos118",
     },
     components: {
       securitySchemes: {
